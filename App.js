@@ -12,10 +12,19 @@ import Post from './src/components/Post'
 
 export default class App extends Component {
   render() {
+    const comments = [{
+      nickname: 'Alonso Onso',
+      comment: 'Meu sertão'
+    },
+    {
+      nickname: 'Anonymus Desconhecido',
+      comment: 'A seca daí, só perde pra xereca da tua mulher'
+    }]
     return (
       <View style={{ flex: 1 }}>
         <Header />
-        <Post image={require('./assets/imgs/fence.jpg')} />
+        <Post image={require('./assets/imgs/fence.jpg')}
+          comments={comments} />
       </View>
     )
   }
