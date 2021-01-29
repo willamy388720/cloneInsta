@@ -70,6 +70,6 @@ const styles = StyleSheet.create({
     color: '#CCC',
   },
   input: {
-    width: '90%'
+    width: '80%',
   },
 })
