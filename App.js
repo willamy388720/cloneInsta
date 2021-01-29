@@ -3,8 +3,7 @@ import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
-  View,
-  Text,
+  View
 } from 'react-native'
 
 import Header from './src/components/Header'

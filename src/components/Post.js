@@ -8,6 +8,7 @@ import {
 
 import Autor from './Autor'
 import Comments from './Comments'
+import AddComment from './AddComment'
 
 export default class Post extends Component {
   render() {
@@ -16,6 +17,7 @@ export default class Post extends Component {
         <Image source={this.props.image} style={styles.image} />
         <Autor email='zeCabras@email.com' nickname='Zé das Cabras' />
         <Comments comments={this.props.comments} />
+        <AddComment />
       </View>
     )
   }
