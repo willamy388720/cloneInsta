@@ -2,13 +2,25 @@ import 'react-native-gesture-handler'
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createStackNavigator } from '@react-navigation/stack';
+
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 import Feed from './screens/Feed'
 import AddPhoto from './screens/AddPhoto'
 import Profile from './screens/Profile'
+import Login from './screens/Login'
 
 const Tab = createBottomTabNavigator()
+const Stack = createStackNavigator()
+
+
+const loginOrProfileRouter = () =>
+  <Stack.Navigator>
+    <Stack.Screen name='Profile' component={Profile} />
+    <Stack.Screen name='Auth' component={Login} />
+  </Stack.Navigator>
+
 
 export default props => (
   <>
@@ -43,7 +55,7 @@ export default props => (
 
         <Tab.Screen name="Feed" component={Feed} />
         <Tab.Screen name="AddPhoto" component={AddPhoto} />
-        <Tab.Screen name="Profile" component={Profile} />
+        <Tab.Screen name="Profile" component={loginOrProfileRouter} />
       </Tab.Navigator>
     </NavigationContainer>
   </>

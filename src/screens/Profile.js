@@ -7,10 +7,10 @@ import {
 } from 'react-native'
 import { Gravatar } from "react-native-gravatar"
 
-export default class Feed extends Component {
+export default class Profile extends Component {
 
   logout = () => {
-
+    this.props.navigation.navigate('Auth')
   }
 
 
