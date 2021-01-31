@@ -7,9 +7,10 @@ import {
   TextInput
 } from 'react-native'
 
-export default class Login extends Component {
+export default class Register extends Component {
 
   state = {
+    name: '',
     email: '',
     password: '',
   }
@@ -21,8 +22,12 @@ export default class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <TextInput placeholder='Name' style={styles.input}
+          autoFocus={true} value={this.state.name}
+          onChange={name => this.setState({ name })} />
+
         <TextInput placeholder='Email' style={styles.input}
-          autoFocus={true} keyboardType='email-address' value={this.state.email}
+          keyboardType='email-address' value={this.state.email}
           onChange={email => this.setState({ email })} />
 
         <TextInput placeholder='Senha' style={styles.input}
@@ -30,12 +35,8 @@ export default class Login extends Component {
           value={this.state.password}
           onChange={password => this.setState({ password })} />
 
-        <TouchableOpacity onPress={this.login} style={styles.button}>
-          <Text style={styles.textButton}>Login</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => { this.props.navigation.navigate('Register') }} style={styles.button}>
-          <Text style={styles.textButton}>Criar nova conta...</Text>
+        <TouchableOpacity onPress={() => { }} style={styles.button}>
+          <Text style={styles.textButton}>Salvar</Text>
         </TouchableOpacity>
       </View >
     )
@@ -64,5 +65,6 @@ const styles = StyleSheet.create({
     height: 40,
     borderWidth: 1,
     borderColor: '#333',
+    paddingLeft: 15,
   },
 })
