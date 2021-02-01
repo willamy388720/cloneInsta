@@ -24,16 +24,16 @@ export default class Register extends Component {
       <View style={styles.container}>
         <TextInput placeholder='Name' style={styles.input}
           autoFocus={true} value={this.state.name}
-          onChange={name => this.setState({ name })} />
+          onChangeText={name => this.setState({ name })} />
 
         <TextInput placeholder='Email' style={styles.input}
           keyboardType='email-address' value={this.state.email}
-          onChange={email => this.setState({ email })} />
+          onChangeText={email => this.setState({ email })} />
 
         <TextInput placeholder='Senha' style={styles.input}
           secureTextEntry={true}
           value={this.state.password}
-          onChange={password => this.setState({ password })} />
+          onChangeText={password => this.setState({ password })} />
 
         <TouchableOpacity onPress={() => { }} style={styles.button}>
           <Text style={styles.textButton}>Salvar</Text>
