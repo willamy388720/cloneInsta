@@ -5,11 +5,15 @@ import {
   View,
   FlatList,
 } from 'react-native'
+import { fetchPosts } from "../store/actions/posts";
 
 import Header from '../components/Header'
 import Post from '../components/Post'
 
 class Feed extends Component {
+  componentDidMount = () => {
+    this.props.onFetchPosts()
+  }
 
   render() {
     return (
@@ -42,4 +46,10 @@ const mapStateToProps = ({ posts }) => {
   }
 }
 
-export default connect(mapStateToProps)(Feed)
+const mapDispatchToProps = dispatch => {
+  return {
+    onFetchPosts: () => dispatch(fetchPosts())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Feed)
