@@ -3,9 +3,21 @@ import axios from "axios";
 
 export const addPost = post => {
   return dispatch => {
-    axios.post('/posts.json', { ...post })
+    axios({
+      url: 'uploadImage',
+      baseURL: 'https://us-central1-lambe-146b4.cloudfunctions.net/uploadImage',
+      method: 'post',
+      data: {
+        image: post.image.base64
+      }
+    })
       .catch(err => console.log(err))
-      .then(res => console.log(res.data))
+      .then(resp => {
+        post.image = resp.data.imageUrl
+        axios.post('/posts.json', { ...post })
+          .catch(err => console.log(err))
+          .then(res => console.log(res.data))
+      })
   }
   // return {
   //   type: ADD_POST,
