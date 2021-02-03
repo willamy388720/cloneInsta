@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from "react-redux";
+import { addPost } from "../store/actions/posts";
 import {
   StyleSheet,
   View,
@@ -13,7 +15,7 @@ import {
 
 import ImagePicker from 'react-native-image-picker';
 
-export default class AddPhoto extends Component {
+class AddPhoto extends Component {
   state = {
     image: null,
     comment: '',
@@ -33,7 +35,19 @@ export default class AddPhoto extends Component {
   }
 
   save = async () => {
-    Alert.alert('Imagem Adicionada!', this.state.comment)
+    this.props.onAddPost({
+      id: Math.random(),
+      nickname: this.props.name,
+      email: this.props.email,
+      image: this.state.image,
+      comments: [{
+        nickname: this.props.name,
+        comment: this.state.comment
+      }]
+    })
+
+    this.setState({ image: null, comment: '' })
+    this.props.navigation.navigate('Feed')
   }
 
   render() {
@@ -94,3 +108,18 @@ const styles = StyleSheet.create({
     width: '90%',
   },
 })
+
+const mapStateToProps = ({ user }) => {
+  return {
+    email: user.email,
+    name: user.name,
+  }
+}
+
+const mapDispatchProps = dispatch => {
+  return {
+    onAddPost: post => dispatch(addPost(post))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchProps)(AddPhoto)
