@@ -11,6 +11,7 @@ import AddPhoto from './screens/AddPhoto'
 import Profile from './screens/Profile'
 import Login from './screens/Login'
 import Register from './screens/Register'
+import Splash from "./screens/Splash";
 
 const Tab = createBottomTabNavigator()
 const Stack = createStackNavigator()
@@ -28,41 +29,50 @@ const loginOrProfileRouter = () =>
   </Stack.Navigator >
 
 
-export default props => (
+const menuNavigation = () => (
   <>
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ color }) => {
-            let iconName;
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ color }) => {
+          let iconName;
 
-            switch (route.name) {
-              case 'Feed':
-                iconName = 'home'
-                break;
-              case 'AddPhoto':
-                iconName = 'camera'
-                break;
-              case 'Profile':
-                iconName = 'user'
-                break;
+          switch (route.name) {
+            case 'Feed':
+              iconName = 'home'
+              break;
+            case 'AddPhoto':
+              iconName = 'camera'
+              break;
+            case 'Profile':
+              iconName = 'user'
+              break;
 
-              default:
-                break;
-            }
+            default:
+              break;
+          }
 
-            return <Icon name={iconName} size={30} color={color} />;
-          },
-        })}
-        initialRouteName="Feed"
-        tabBarOptions={{
-          showLabel: false
-        }}>
+          return <Icon name={iconName} size={30} color={color} />;
+        },
+      })}
+      initialRouteName="Feed"
+      tabBarOptions={{
+        showLabel: false
+      }}>
 
-        <Tab.Screen name="Feed" component={Feed} />
-        <Tab.Screen name="AddPhoto" component={AddPhoto} />
-        <Tab.Screen name="Profile" component={loginOrProfileRouter} />
-      </Tab.Navigator>
-    </NavigationContainer>
+      <Tab.Screen name="Feed" component={Feed} />
+      <Tab.Screen name="AddPhoto" component={AddPhoto} />
+      <Tab.Screen name="Profile" component={loginOrProfileRouter} />
+    </Tab.Navigator>
   </>
 )
+
+const SplashRouter = () =>
+  <NavigationContainer>
+    <Stack.Navigator initialRouteName='Splash' screenOptions={{ headerShown: false }}>
+      <Stack.Screen name='Splash' component={Splash} />
+      <Stack.Screen name='App' component={menuNavigation} />
+    </Stack.Navigator >
+  </NavigationContainer>
+
+
+export default SplashRouter
